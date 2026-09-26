@@ -1,15 +1,28 @@
-// import 'package:js/js.dart';
+// // import 'package:js/js.dart';
 
-// @JS()
-// external paystackPopUp(
-//   String pkTest,
-//   String email,
-//   String amount,
-//   String ref,
-//   void Function() onClosed,
-//   void Function() callback,
-// );
+// // @JS()
+// // external paystackPopUp(
+// //   String pkTest,
+// //   String email,
+// //   String amount,
+// //   String ref,
+// //   void Function() onClosed,
+// //   void Function() callback,
+// // );
 
+// // import 'package:js/js.dart';
+
+// // @JS('paystackPopUp')
+// // external void paystackPopUp(
+// //   String pkTest,
+// //   String email,
+// //   String amount,
+// //   String ref,
+// //   Function onClosed,
+// //   Function callback,
+// // );
+
+// // ignore: avoid_web_libraries_in_flutter
 // import 'package:js/js.dart';
 
 // @JS('paystackPopUp')
@@ -22,47 +35,34 @@
 //   Function callback,
 // );
 
-// ignore: avoid_web_libraries_in_flutter
-import 'package:js/js.dart';
+// // @JS('PaystackPop')
+// // library facebook_integration.js;
 
-@JS('paystackPopUp')
-external void paystackPopUp(
-  String pkTest,
-  String email,
-  String amount,
-  String ref,
-  Function onClosed,
-  Function callback,
-);
+// // import 'package:js/js.dart';
 
-// @JS('PaystackPop')
-// library facebook_integration.js;
+// // typedef PaystackCallback = void Function(dynamic response);
 
-// import 'package:js/js.dart';
+// // @JS('setup')
+// // external setup(SetUpOptions options);
 
-// typedef PaystackCallback = void Function(dynamic response);
+// // @JS('openIframe')
+// // external openIframe();
 
-// @JS('setup')
-// external setup(SetUpOptions options);
-
-// @JS('openIframe')
-// external openIframe();
-
-// @JS()
-// @anonymous
-// class SetUpOptions {
-//   external factory SetUpOptions({
-//     String key,
-//     String email,
-//     int amount,
-//     String ref,
-//     PaystackCallback onClosed,
-//     PaystackCallback callback,
-//   });
-//   external String key;
-//   external String email;
-//   external int amount;
-//   external String ref;
-//   external PaystackCallback onClosed;
-//   external PaystackCallback callback;
-// }
+// // @JS()
+// // @anonymous
+// // class SetUpOptions {
+// //   external factory SetUpOptions({
+// //     String key,
+// //     String email,
+// //     int amount,
+// //     String ref,
+// //     PaystackCallback onClosed,
+// //     PaystackCallback callback,
+// //   });
+// //   external String key;
+// //   external String email;
+// //   external int amount;
+// //   external String ref;
+// //   external PaystackCallback onClosed;
+// //   external PaystackCallback callback;
+// // }

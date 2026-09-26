@@ -164,23 +164,23 @@ class VerifiedController extends GetxController {
 
     final reference = "verify-${DateTime.now().millisecondsSinceEpoch}";
 
-    try {
-      await PaystackService.startPayment(
-        context: Get.context!,
-        email: email,
-        reference: reference,
-        amount: amountKobo,
-        onSuccess: (paymentData) async {
-          _snack('Payment Success', 'Verification completed successfully');
-          await _activateOrExtendVerification();
-        },
-        onError: (error) {
-          _snack('Payment Error', error);
-        },
-      );
-    } catch (e) {
-      _snack('Error', 'Could not launch Paystack: $e');
-    }
+    // try {
+    //   await PaystackService.startPayment(
+    //     context: Get.context!,
+    //     email: email,
+    //     reference: reference,
+    //     amount: amountKobo,
+    //     onSuccess: (paymentData) async {
+    //       _snack('Payment Success', 'Verification completed successfully');
+    //       await _activateOrExtendVerification();
+    //     },
+    //     onError: (error) {
+    //       _snack('Payment Error', error);
+    //     },
+    //   );
+    // } catch (e) {
+    //   _snack('Error', 'Could not launch Paystack: $e');
+    // }
   }
 
   // ------------------------------------------------
