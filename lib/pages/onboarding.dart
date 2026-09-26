@@ -174,7 +174,7 @@ class _OnboardingState extends State<Onboarding>
               Text(
                 'Trusted Home Services, Simplified.',
                 style: TextStyle(
-                  fontSize: 12.5,
+                  fontSize: 10,
                   fontStyle: FontStyle.italic,
                   color: Colors.black.withOpacity(0.55),
                   letterSpacing: 0.3,

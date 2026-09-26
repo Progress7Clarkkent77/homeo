@@ -122,6 +122,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                 onSupportTap: _openSupportWhatsApp,
                 onPolicyTap: _openPolicy,
                 onTermsTap: _openTerms,
+                onAboutTap: _openAbout,
                 onToggleTheme: () =>
                     themeCtrl.isDarkMode.value = !themeCtrl.isDarkMode.value,
                 onLogoutTap: _handleLogout,
@@ -325,6 +326,20 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     }
   }
 
+  // privacy policy / terms link.
+  Future<void> _openAbout() async {
+    final Uri url = Uri.parse(
+      'https://docs.google.com/document/d/e/2PACX-1vTeKINNAAPhmdOngq5-bQIKd7gtd0Fo7fgzGjuLaVRmsKbJewXlZiuKylE5QwXdl7ZA2iBCnPsnD7Nj/pub',
+    );
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      Get.snackbar(
+        'Error',
+        'Could not open the about page',
+        snackPosition: SnackPosition.BOTTOM,
+      );
+    }
+  }
+
   // 🔹 Confirms, then signs the user out.
   // NOTE: if HOMEo already has a dedicated AuthController.logout(), call
   // that here instead so any app-specific cleanup (clearing local state,
@@ -407,6 +422,7 @@ class _Header extends StatelessWidget {
   final VoidCallback onSupportTap;
   final VoidCallback onPolicyTap;
   final VoidCallback onTermsTap;
+  final VoidCallback onAboutTap;
   final VoidCallback onToggleTheme;
   final VoidCallback onLogoutTap;
 
@@ -417,6 +433,7 @@ class _Header extends StatelessWidget {
     required this.onSupportTap,
     required this.onPolicyTap,
     required this.onTermsTap,
+    required this.onAboutTap,
     required this.onToggleTheme,
     required this.onLogoutTap,
   });
@@ -472,6 +489,7 @@ class _Header extends StatelessWidget {
             onSupportTap: onSupportTap,
             onPolicyTap: onPolicyTap,
             onTermsTap: onTermsTap,
+            onAboutTap: onAboutTap,
             onToggleTheme: onToggleTheme,
             onLogoutTap: onLogoutTap,
           ),
@@ -489,6 +507,7 @@ class _HeaderMenuButton extends StatelessWidget {
   final VoidCallback onSupportTap;
   final VoidCallback onPolicyTap;
   final VoidCallback onTermsTap;
+  final VoidCallback onAboutTap;
   final VoidCallback onToggleTheme;
   final VoidCallback onLogoutTap;
 
@@ -499,6 +518,7 @@ class _HeaderMenuButton extends StatelessWidget {
     required this.onSupportTap,
     required this.onPolicyTap,
     required this.onTermsTap,
+    required this.onAboutTap,
     required this.onToggleTheme,
     required this.onLogoutTap,
   });
@@ -542,6 +562,9 @@ class _HeaderMenuButton extends StatelessWidget {
             case 'terms':
               onTermsTap();
               break;
+            case 'about':
+              onAboutTap();
+              break;
             case 'theme':
               onToggleTheme();
               break;
@@ -572,11 +595,15 @@ class _HeaderMenuButton extends StatelessWidget {
             icon: Icons.privacy_tip_outlined,
             label: 'Policy',
           ),
-
           _item(
             value: 'terms',
             icon: Icons.book_outlined,
             label: 'Terms of Use',
+          ),
+          _item(
+            value: 'about',
+            icon: Icons.info_outline_rounded,
+            label: 'About Us',
           ),
           const PopupMenuDivider(height: 12),
           _item(
