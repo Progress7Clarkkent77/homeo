@@ -296,179 +296,312 @@ class _TermsOfUseScreenState extends State<TermsOfUseScreen> {
 }
 
 const String _termsOfUseText = '''
-SpiiiQ Terms of Use
+HOMEo Terms of Use
 
-Last Updated: August 3, 2026
+Last Updated: October 6, 2026
 
-Welcome to SpiiiQ, a text-first social platform ("SpiiiQ," "we," "our," or "us"). By creating an account, accessing, or using SpiiiQ, you acknowledge that you have read, understood, and agree to these Terms of Use. If you do not agree with these Terms, you may not register for or use the platform.
+Welcome to HOMEo, a managed home-services platform operated by AfiaSplendid LTD ("AfiaSplendid," "HOMEo," "we," "our," or "us").
 
-1. Eligibility
+HOMEo is designed to help customers discover and request household services from professionals who are recruited, screened, and managed through our service process.
 
-You must be at least 13 years of age, or the minimum age required by the laws of your country, to use SpiiiQ. By using the platform, you represent that you meet these requirements and have the legal capacity to enter into this agreement.
+By accessing or using HOMEo, you acknowledge that you have read, understood, and agree to these Terms of Use. If you do not agree with these Terms, you must not use HOMEo.
 
-2. Acceptance of These Terms
+1. About HOMEo
 
-By selecting "I Agree", registering an account, or continuing to use SpiiiQ, you agree to be legally bound by these Terms of Use, our Privacy Policy, Community Guidelines, and any additional policies published within the platform.
+HOMEo is a managed home-services platform that helps customers access household services through AfiaSplendid LTD.
 
-3. Purpose of SpiiiQ
+Our services may include:
 
-SpiiiQ is a community platform designed to enable users to:
+- Cleaning services.
+- Babysitting services.
+- Nanny services.
+- Maid services.
+- Chef or cooking services.
+- Home tutoring or lesson services.
 
-- Share text, images, and other supported content.
-- Join and participate in communities.
-- Communicate with other users.
-- Discover information and opportunities.
-- Engage in conversations respectfully.
+Service categories, availability, locations, pricing, and other offerings may change from time to time.
 
-4. Community Standards
+HOMEo does not operate as an open marketplace where anyone can freely register and offer services to customers.
 
-To maintain a safe and respectful environment, every user must:
+2. Eligibility
 
-- Treat others with respect and dignity.
-- Share lawful and truthful content.
-- Respect the rights and privacy of others.
-- Follow all applicable laws.
-- Use Textido responsibly.
+You must be at least 18 years of age to independently request or arrange services through HOMEo.
 
-You are solely responsible for the content you create, upload, or share.
+If you are under 18, you may only use HOMEo with the involvement and permission of a parent or legal guardian where permitted by applicable law.
 
-5. Prohibited Conduct
+3. Acceptance of These Terms
 
-You agree not to:
+By accessing HOMEo, creating an account, requesting a service, contacting HOMEo, or otherwise using the platform, you agree to these Terms of Use, our Privacy Policy, and any additional policies or service-specific terms that may apply.
 
-- Post hate speech or discriminatory content.
-- Harass, threaten, bully, or intimidate others.
-- Share sexually explicit, exploitative, or illegal content.
-- Promote violence, terrorism, or criminal activity.
-- Upload viruses or malicious software.
-- Impersonate another person or organization.
-- Publish fraudulent or misleading information.
-- Send spam or unsolicited advertisements.
-- Attempt unauthorized access to accounts or systems.
-- Interfere with the security or operation of SpiiiQ.
-- Buy, sell, or transfer accounts without authorization.
+4. Browsing and Service Information
 
-Violations may result in immediate enforcement action.
+HOMEo may allow users to browse available service categories and view information about the services offered.
 
-6. Zero-Tolerance Policy
+Service descriptions, prices, availability, coverage areas, images, and other information displayed through HOMEo are provided for informational and service-planning purposes.
 
-SpiiiQ maintains a strict zero-tolerance policy for objectionable content and abusive behavior.
+Information may change based on availability, staffing, location, service requirements, and other operational factors.
 
-Users must not create, upload, publish, promote, or distribute content that includes, but is not limited to:
+5. Service Requests
 
-- Hate speech or discrimination.
-- Harassment, bullying, intimidation, or threats.
-- Sexually explicit, exploitative, or abusive material.
-- Violence or content encouraging violence.
-- Terrorist or extremist content.
-- Illegal activities or criminal conduct.
-- Fraud, scams, phishing, or impersonation.
-- Content intended to exploit, harm, or endanger others.
-Any content that violates applicable laws or these Terms of Use.
+Submitting a service request or contacting HOMEo does not automatically guarantee that a service will be available or confirmed.
 
-Any user found violating this policy may have their content removed immediately and may receive warnings, temporary restrictions, account suspension, or permanent account termination without prior notice.
+Before a service is provided, HOMEo may need to confirm:
 
-Where required by law, SpiiiQ may report unlawful activities to the appropriate authorities.
+- Service type.
+- Customer location.
+- Preferred date and time.
+- Service requirements.
+- Availability of an appropriate professional.
+- Applicable service price.
+- Other relevant arrangements.
 
-By accepting these Terms of Use, you acknowledge and agree to comply with this Zero-Tolerance Policy.
+A service is considered confirmed only after HOMEo communicates confirmation to the customer.
 
-7. User-Generated Content
+6. Service Professionals
 
-You retain ownership of the content you create.
+HOMEo may recruit, interview, screen, assess, and manage professionals who provide services through the platform.
 
-By posting content on SpiiiQ, you grant SpiiiQ a worldwide, non-exclusive, royalty-free license to host, display, distribute, process, and transmit your content solely for the purpose of operating, maintaining, and improving the platform.
+The screening and verification process may include information such as:
 
-You represent that:
+- Identity information.
+- Contact information.
+- Experience.
+- Skills.
+- References.
+- Other information relevant to the service.
 
-- You own the content or have permission to share it.
-- Your content does not violate the rights of others.
-- Your content complies with these Terms of Use.
+Although we take reasonable steps to assess professionals before assigning them to customers, no screening process can guarantee a person's future conduct, performance, or suitability in every situation.
 
-8. Reporting and Moderation
+7. Professional Assignment
 
-SpiiiQ is committed to maintaining a safe and respectful community.
+HOMEo may determine which professional is assigned to a service request based on factors including:
 
-Users may report posts, channels, comments, or accounts they believe violate these Terms of Use or Community Guidelines.
+- Service type.
+- Location.
+- Availability.
+- Experience.
+- Skills.
+- Customer requirements.
+- Other operational considerations.
 
-Reported content may be reviewed by our moderation team, and appropriate action may include:
+Customers may communicate specific preferences or requirements, but HOMEo cannot guarantee that a particular professional will always be available or assigned.
 
-- Removing content.
-- Limiting content visibility.
-- Issuing warnings.
-- Suspending accounts.
-- Permanently terminating accounts.
-- Reporting illegal activities to relevant authorities where required by law.
+8. Customer Responsibilities
 
-9. Blocking Users
+Customers using HOMEo agree to:
 
-Users may block other users to prevent unwanted interactions.
+- Provide accurate information.
+- Provide accurate service location details.
+- Provide reasonable access to the premises where required.
+- Clearly communicate relevant service requirements.
+- Treat service professionals with respect.
+- Provide a safe environment for service professionals.
+- Follow applicable laws and regulations.
+- Avoid abusive, threatening, discriminatory, or inappropriate behavior.
 
-Blocking may prevent:
+Customers must not knowingly provide false information or request services for unlawful purposes.
 
-- Direct messaging.
-- Viewing certain content.
-- Future interactions, as determined by platform functionality.
+9. Service Environment and Safety
 
-10. Account Suspension and Termination
+Customers are responsible for informing HOMEo of any relevant circumstances that may reasonably affect the safety of a service professional or the performance of a service.
 
-We reserve the right to suspend or permanently terminate accounts that:
+Customers must not knowingly expose professionals to dangerous conditions, unlawful activities, weapons, hazardous materials, or other serious risks.
 
-- Violate these Terms of Use.
-- Repeatedly receive valid abuse reports.
-- Engage in fraudulent or illegal activities.
-- Threaten the safety, security, or integrity of the platform or its users.
+HOMEo may refuse, suspend, or terminate a service where we reasonably believe that the working environment presents an unacceptable safety risk.
 
-Serious violations may result in immediate account termination without prior notice.
+10. Service Quality
 
-11. Intellectual Property
+We aim to provide reliable and professional services.
 
-The SpiiiQ name, logo, software, design, graphics, and platform features are protected by applicable intellectual property laws.
+However, service outcomes may vary depending on:
 
-You may not copy, modify, distribute, reverse engineer, or exploit any part of the platform without prior written permission.
+- Property size and condition.
+- Service requirements.
+- Time allocated.
+- Materials or equipment available.
+- Customer instructions.
+- Other circumstances affecting the service.
 
-12. Privacy
+HOMEo does not guarantee that every service will meet every individual preference or expectation.
 
-Your use of SpiiiQ is also governed by our Privacy Policy, which explains how your information is collected, used, stored, and protected.
+Where a customer has a legitimate concern regarding a service, they should contact HOMEo so that the matter can be reviewed.
 
-13. Availability of Service
+11. Pricing and Service Charges
 
-We strive to provide reliable service but do not guarantee uninterrupted availability.
+Service prices may depend on factors such as:
 
-We may modify, suspend, or discontinue features to improve the platform, maintain security, or comply with legal requirements.
+- Type of service.
+- Property size.
+- Service duration.
+- Location.
+- Number of professionals required.
+- Specific customer requirements.
+- Additional services requested.
 
-14. Disclaimer
+Prices may change from time to time.
 
-SpiiiQ is provided "as is" and "as available."
+Where applicable, the customer will be informed of the applicable price before the service is confirmed.
+
+Additional services or requirements may result in additional charges where agreed or reasonably applicable.
+
+12. Payments
+
+Where payment is required for a HOMEo service, customers will be provided with the applicable payment instructions or payment method.
+
+Customers should only make payments through payment channels officially communicated by HOMEo or AfiaSplendid LTD.
+
+Customers should not send money to individuals claiming to represent HOMEo through unofficial channels.
+
+13. Cancellations and Rescheduling
+
+Customers may contact HOMEo to request cancellation or rescheduling of a service.
+
+Cancellation or rescheduling may be subject to the timing of the request, service status, professional availability, and any applicable cancellation policy.
+
+If a professional has already been assigned, dispatched, or begun travelling to the service location, additional conditions may apply.
+
+14. Refunds
+
+Where a refund is applicable, it will be handled according to the circumstances of the service and any applicable refund policy.
+
+Refunds may be considered where:
+
+- A confirmed service was cancelled by HOMEo.
+- A qualifying payment was made for a service that was not provided.
+- A billing or payment error occurred.
+- Another circumstance reasonably requires a refund.
+
+Refund eligibility may depend on the specific service and circumstances.
+
+Nothing in these Terms removes any consumer rights that cannot legally be excluded.
+
+15. Prohibited Conduct
+
+Users must not use HOMEo to:
+
+- Harass, threaten, abuse, or intimidate professionals or other users.
+- Discriminate against professionals based on unlawful grounds.
+- Request unlawful services.
+- Provide false information.
+- Attempt to bypass HOMEo to unlawfully interfere with service arrangements.
+- Engage in fraud or fraudulent transactions.
+- Use HOMEo to facilitate criminal activity.
+- Attempt unauthorized access to HOMEo systems.
+- Interfere with the security or operation of the platform.
+- Misuse customer or professional information.
+- Record, publish, or distribute private information about professionals or customers without appropriate authorization or lawful basis.
+
+Violations may result in service cancellation, account restrictions, suspension, or termination.
+
+16. Complaints and Disputes
+
+Customers who have concerns regarding a service, professional, payment, or interaction should contact HOMEo as soon as reasonably possible.
+
+We may investigate complaints and communicate with the customer and, where appropriate, the relevant professional.
+
+Depending on the circumstances, HOMEo may:
+
+- Request additional information.
+- Review the service arrangement.
+- Contact the relevant parties.
+- Arrange a corrective action.
+- Restrict future service access.
+- Take other appropriate action.
+
+17. Account Suspension and Termination
+
+We may suspend or terminate access to HOMEo where a user:
+
+- Violates these Terms.
+- Engages in fraudulent activity.
+- Provides false information.
+- Abuses professionals or other users.
+- Creates a safety risk.
+- Engages in unlawful conduct.
+- Attempts to compromise the platform.
+- Repeatedly misuses HOMEo services.
+
+Serious violations may result in immediate restriction or termination.
+
+18. Intellectual Property
+
+The HOMEo name, logo, software, design, graphics, interface, service presentation, and other original materials are owned by or licensed to AfiaSplendid LTD and are protected by applicable intellectual property laws.
+
+You may not copy, reproduce, modify, distribute, reverse engineer, or commercially exploit any part of HOMEo without prior written permission.
+
+19. Privacy
+
+Your use of HOMEo is also governed by our Privacy Policy.
+
+Our Privacy Policy explains how information associated with your use of HOMEo may be collected, used, stored, processed, and protected.
+
+20. Third-Party Services
+
+HOMEo may use third-party services for communication, payments, hosting, technology, analytics, customer support, transportation, or other operational purposes.
+
+Third-party services may have their own terms and privacy policies.
+
+HOMEo is not responsible for the independent policies or actions of third-party services outside our reasonable control.
+
+21. Availability of Service
+
+We aim to provide reliable access to HOMEo, but we do not guarantee that the platform or every service will always be available.
+
+Service availability may be affected by:
+
+- Professional availability.
+- Location.
+- Weather.
+- Emergencies.
+- Technical issues.
+- Operational limitations.
+- Public holidays.
+- Other circumstances outside our reasonable control.
+
+We may modify, suspend, or discontinue features or services when necessary.
+
+22. Disclaimer
+
+HOMEo is provided on an "as is" and "as available" basis to the fullest extent permitted by applicable law.
 
 We do not guarantee that:
 
-- The platform will always be available.
-- All user-generated content is accurate or reliable.
+- Every requested service will always be available.
+- A particular professional will always be available.
+- Services will always be provided at a particular time unless expressly confirmed.
+- Service results will always meet every individual expectation.
 - The platform will always operate without technical issues.
 
-15. Limitation of Liability
+23. Limitation of Liability
 
-To the fullest extent permitted by law, SpiiiQ shall not be liable for:
+To the fullest extent permitted by applicable law, AfiaSplendid LTD and HOMEo shall not be liable for indirect, incidental, consequential, special, or other damages arising from or related to:
 
-- User-generated content.
-- Indirect or consequential damages.
-- Loss of data or profits.
-- Unauthorized access to user accounts.
-- Service interruptions beyond our reasonable control.
+- Use or inability to use HOMEo.
+- Service delays caused by circumstances outside our reasonable control.
+- Third-party services.
+- Customer-provided information that is inaccurate or incomplete.
+- Unauthorized access caused by circumstances outside our reasonable control.
+- Technical interruptions or failures.
 
-16. Changes to These Terms
+Nothing in these Terms excludes or limits liability that cannot legally be excluded or limited.
 
-We may update these Terms of Use from time to time.
+24. Changes to These Terms
 
-When significant changes are made, users may be required to review and accept the updated Terms before continuing to use the platform.
+We may update these Terms of Use from time to time to reflect changes in our services, technology, operations, or legal requirements.
 
-17. Governing Law
+Where significant changes are made, we may notify users through HOMEo or another reasonable communication method.
 
-These Terms shall be governed by the applicable laws of the jurisdiction in which SpiiiQ operates, without regard to conflict of law principles.
+Your continued use of HOMEo after updated Terms become effective constitutes acceptance of the revised Terms, where permitted by law.
 
-18. Contact Us
+25. Governing Law
 
-If you have questions regarding these Terms of Use, please contact us:
+These Terms shall be governed by the applicable laws of the jurisdiction in which AfiaSplendid LTD operates, subject to any mandatory consumer rights and protections that may apply.
+
+26. Contact Us
+
+If you have questions regarding these Terms of Use, our services, service requests, or complaints, please contact us:
+
+AfiaSplendid LTD
 
 Email: contact@afiasplendid.co.site
 

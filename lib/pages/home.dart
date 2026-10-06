@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:homeo/pages/logout_dialog.dart';
 import 'package:homeo/pages/profile.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -15,6 +16,16 @@ import 'package:homeo/widgets/auth_required_dialog.dart';
 /// rather than "marketplace-bright."
 const Color kHomeoPrimary = Color(0xFF0E7C66);
 const Color kHomeoPrimaryDark = Color(0xFF0A5C4C);
+
+/// 🔹 "Admin Login" shows in the menu only while the admin account is
+/// signed in. Uses the same [kHomeoAdminEmail] the admin gate itself
+/// enforces (admin_login_page.dart), so the two can never drift apart.
+bool get _isAdminSignedIn {
+  final email = FirebaseAuth.instance.currentUser?.email?.toLowerCase().trim();
+  return email != null && email == kHomeoAdminEmail.toLowerCase().trim();
+}
+
+bool get _isSignedIn => FirebaseAuth.instance.currentUser != null;
 
 /// 🔹 Premium HOMEo service catalogue — the new Home tab.
 ///
@@ -110,11 +121,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               // move, regardless of how the service list is scrolled.
               _Header(
                 isDark: isDark,
-                onProfileTap: () => Get.to(
-                  () => const ProfileScreen(),
-                  transition: Transition.cupertino,
-                ),
-                //_openProfile,
+                onProfileTap: _openProfile,
                 onAdminTap: () => Get.to(
                   () => const AdminLoginPage(),
                   transition: Transition.cupertino,
@@ -340,32 +347,20 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
     }
   }
 
-  // 🔹 Confirms, then signs the user out.
-  // NOTE: if HOMEo already has a dedicated AuthController.logout(), call
-  // that here instead so any app-specific cleanup (clearing local state,
-  // routing to the sign-in screen, etc.) still runs.
-  Future<void> _handleLogout() async {
-    final confirmed = await Get.dialog<bool>(
-      AlertDialog(
-        title: const Text('Log out'),
-        content: const Text('Are you sure you want to log out of HOMEo?'),
-        actions: [
-          TextButton(
-            onPressed: () => Get.back(result: false),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Get.back(result: true),
-            child: const Text('Log out', style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
+  // 🔹 Profile needs an account — signed-out users get the same
+  // "Sign in to continue" dialog the like button uses, no navigation.
+  void _openProfile() {
+    requireAuth(
+      context,
+      title: 'Sign in to continue',
+      message: 'Please sign in to view and manage your HOMEo profile.',
+      onAuthenticated: () =>
+          Get.to(() => const ProfileScreen(), transition: Transition.cupertino),
     );
-
-    if (confirmed == true) {
-      await FirebaseAuth.instance.signOut();
-    }
   }
+
+  // 🔹 Premium confirm -> premium loader -> sign out. Stays on Home.
+  Future<void> _handleLogout() => showLogoutFlow();
 
   Widget _buildBody(bool isDark, List<HomeoServiceModel> filteredServices) {
     if (serviceCtrl.isLoading.value) {
@@ -579,11 +574,12 @@ class _HeaderMenuButton extends StatelessWidget {
             icon: Icons.person_outline_rounded,
             label: 'Profile',
           ),
-          _item(
-            value: 'admin',
-            icon: Icons.admin_panel_settings_rounded,
-            label: 'Admin Login',
-          ),
+          if (_isAdminSignedIn)
+            _item(
+              value: 'admin',
+              icon: Icons.admin_panel_settings_rounded,
+              label: 'Admin Login',
+            ),
           const PopupMenuDivider(height: 12),
           _item(
             value: 'support',
@@ -598,7 +594,7 @@ class _HeaderMenuButton extends StatelessWidget {
           _item(
             value: 'terms',
             icon: Icons.book_outlined,
-            label: 'Terms of Use',
+            label: 'Terms of Service',
           ),
           _item(
             value: 'about',
@@ -612,14 +608,16 @@ class _HeaderMenuButton extends StatelessWidget {
             label: isDark ? 'Light Mode' : 'Dark Mode',
             iconColor: isDark ? Colors.amber : null,
           ),
-          const PopupMenuDivider(height: 12),
-          _item(
-            value: 'logout',
-            icon: Icons.logout_rounded,
-            label: 'Logout',
-            iconColor: Colors.redAccent,
-            labelColor: Colors.redAccent,
-          ),
+          if (_isSignedIn) ...[
+            const PopupMenuDivider(height: 12),
+            _item(
+              value: 'logout',
+              icon: Icons.logout_rounded,
+              label: 'Logout',
+              iconColor: Colors.redAccent,
+              labelColor: Colors.redAccent,
+            ),
+          ],
         ],
       ),
     );
