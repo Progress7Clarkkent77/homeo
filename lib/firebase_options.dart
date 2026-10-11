@@ -41,39 +41,37 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAAq7Nxwq_bjv-H-0KvI60aZkJ_sORyPs8',
-    appId: '1:248321400997:web:293fcd2e4d2077826bad4c',
+    apiKey: 'AIzaSyDvKuUX-6jWkVJV5CpKGJNZ8qDRiy53MvE',
+    appId: '1:248321400997:web:3796ad623a6d00086bad4c',
     messagingSenderId: '248321400997',
     projectId: 'the-splendid-market',
     authDomain: 'the-splendid-market.firebaseapp.com',
     storageBucket: 'the-splendid-market.appspot.com',
-    measurementId: 'G-DEKLLSSW5K',
+    measurementId: 'G-RLBYHRXXKF',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBF_GwtlL12E0gw9kQdvVoKQF98PqQ35ms',
-    appId: '1:248321400997:android:3b17f427d56170c66bad4c',
+    appId: '1:248321400997:android:ae155e5f8b2d20236bad4c',
     messagingSenderId: '248321400997',
     projectId: 'the-splendid-market',
     storageBucket: 'the-splendid-market.appspot.com',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCv4wR-8fRdAop4B6b8Zb9rj91SlvmDBfI',
-    appId: '1:248321400997:ios:4116f59e353f23576bad4c',
+    appId: '1:248321400997:ios:b2ec96c26e46ae656bad4c',
     messagingSenderId: '248321400997',
     projectId: 'the-splendid-market',
     storageBucket: 'the-splendid-market.appspot.com',
-    iosBundleId: 'com.homeo.app',
+    iosBundleId: 'com.homeo.service',
   );
-
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyCv4wR-8fRdAop4B6b8Zb9rj91SlvmDBfI',
-    appId: '1:248321400997:ios:4116f59e353f23576bad4c',
+    appId: '1:248321400997:ios:b2ec96c26e46ae656bad4c',
     messagingSenderId: '248321400997',
     projectId: 'the-splendid-market',
     storageBucket: 'the-splendid-market.appspot.com',
-    iosBundleId: 'com.homeo.app',
+    iosBundleId: 'com.homeo.service',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(

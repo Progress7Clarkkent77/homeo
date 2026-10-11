@@ -1,4 +1,4 @@
-package com.homeo.app
+package com.homeo.service
 
 import io.flutter.embedding.android.FlutterActivity
 
