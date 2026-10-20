@@ -16,7 +16,7 @@ class _EarnLoginState extends State<EarnLogin> {
     AccountController(),
     permanent: true,
   ); //Get.put(AccountController());
-  // late Blockchain blockchainInstance;
+
   late AuthController authController;
 
   final TextEditingController emailCtrl = TextEditingController();
@@ -32,9 +32,7 @@ class _EarnLoginState extends State<EarnLogin> {
   @override
   void initState() {
     super.initState();
-    accountController.toggleBalanceVisibility();
 
-    // blockchainInstance = Blockchain();
     authController = Get.put(AuthController());
 
     // 🔹 Listen for focus changes
@@ -320,7 +318,6 @@ class EarnSignUp extends StatefulWidget {
 }
 
 class _EarnSignUpState extends State<EarnSignUp> {
-  // late Blockchain blockchainInstance;
   late AuthController authController;
 
   final TextEditingController nameCtrl = TextEditingController();
@@ -342,7 +339,7 @@ class _EarnSignUpState extends State<EarnSignUp> {
   @override
   void initState() {
     super.initState();
-    // blockchainInstance = Blockchain();
+
     authController = Get.put(AuthController());
 
     // 🔹 Listen for focus changes

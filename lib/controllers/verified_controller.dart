@@ -1,7 +1,6 @@
 import 'package:homeo/controllers/e_login_controller.dart';
 import 'package:homeo/controllers/theme_controller.dart';
-import 'package:homeo/services/paystack_integration.dart';
-import 'package:homeo/services/paystack_service.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -146,73 +145,6 @@ class VerifiedController extends GetxController {
   //     },
   //   );
   // }
-
-  Future<void> verifyWithPaystack() async {
-    final user = _auth.currentUser;
-    if (user == null) {
-      _snack('Error', 'Please log in');
-      return;
-    }
-
-    final email = user.email;
-    if (email == null || email.isEmpty) {
-      _snack('Error', 'Email not found');
-      return;
-    }
-
-    const double amountKobo = 2000; // ₦5,000 in kobo
-
-    final reference = "verify-${DateTime.now().millisecondsSinceEpoch}";
-
-    // try {
-    //   await PaystackService.startPayment(
-    //     context: Get.context!,
-    //     email: email,
-    //     reference: reference,
-    //     amount: amountKobo,
-    //     onSuccess: (paymentData) async {
-    //       _snack('Payment Success', 'Verification completed successfully');
-    //       await _activateOrExtendVerification();
-    //     },
-    //     onError: (error) {
-    //       _snack('Payment Error', error);
-    //     },
-    //   );
-    // } catch (e) {
-    //   _snack('Error', 'Could not launch Paystack: $e');
-    // }
-  }
-
-  // ------------------------------------------------
-
-  Future<void> contactForGoldVerification() async {
-    try {
-      const phoneNumber = '2349030323601'; // Replace with your WhatsApp number
-
-      final message = '''
-Hello Textido Team,
-
-I am a Textido user and I would like to request a Gold Verification Badge for my account.
-
-Kindly assist me with the verification process.
-
-Thank you.
-''';
-
-      final uri = Uri.parse(
-        'https://wa.me/$phoneNumber?text=${Uri.encodeComponent(message)}',
-      );
-
-      if (!await canLaunchUrl(uri)) {
-        Get.snackbar('WhatsApp Error', 'Unable to open WhatsApp.');
-        return;
-      }
-
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } catch (_) {
-      Get.snackbar('Error', 'Unable to open WhatsApp.');
-    }
-  }
 
   /* -------------------------------------------------------------------------- */
   /*                     🔐 ACTIVATE / EXTEND VERIFICATION                       */

@@ -5,7 +5,7 @@ import 'package:homeo/controllers/contact_config_controller.dart';
 import 'package:homeo/controllers/moderation_controller.dart';
 //import 'package:spiiiq/controllers/market_controller.dart';
 import 'package:homeo/controllers/referral_controller.dart';
-import 'package:homeo/controllers/reward_controller.dart';
+import 'package:homeo/controllers/r_controller.dart';
 import 'package:homeo/controllers/service_controller.dart';
 import 'package:homeo/controllers/status_controller.dart';
 import 'package:homeo/controllers/theme_controller.dart';
@@ -76,8 +76,6 @@ Future<void> _initBackgroundServices() async {
 
 /// 🔥 LAZY CONTROLLER INITIALIZATION
 void initControllers() {
-  //  final Blockchain blockchainInstance = Blockchain();
-
   Get.lazyPut(() => AuthController(), fenix: true);
   //Get.lazyPut(() => CurrencyController(), fenix: true);
   //  Get.lazyPut(() => WithdrawController1(), fenix: true);
@@ -93,7 +91,7 @@ void initControllers() {
   //Get.lazyPut(() => TokenDataController(), fenix: true);
   Get.lazyPut(() => ThemeController(), fenix: true);
   Get.lazyPut(() => VerifiedController(), fenix: true);
-  Get.lazyPut(() => RewardController(), fenix: true);
+  Get.lazyPut(() => RController(), fenix: true);
   Get.lazyPut(() => ReferController(), fenix: true);
   Get.lazyPut(() => ServiceController(), fenix: true);
 
@@ -167,7 +165,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => const EarnSignUp(),
         '/forgotpassword': (context) => ForgotPassword(),
         '/profile': (context) => ProfileScreen(),
-        //'/policy': (context) => spiiiqRewardPolicyScreen(),
+        //'/policy': (context) => spiiiqrPolicyScreen(),
         // '/verify': (context) => Verify(mnemonic: ''),
         // '/confirm': (context) => Confirm(words: []),
         // '/forgotc': (context) => ForgotConfirm(words: []),

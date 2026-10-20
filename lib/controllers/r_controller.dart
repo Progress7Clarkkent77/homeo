@@ -1,22 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-// class RewardController extends GetxController {
+// class rController extends GetxController {
 //   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 //   final AuthController authController = Get.find<AuthController>();
 
 //   /// Increment user's available balance by 0.0001
-//   Future<void> incrementTinyReward() async {
+//   Future<void> incrementTinyr() async {
 //     await _incrementBalance(0.00005);
 //   }
 
 //   /// Increment user's available balance by 0.007
-//   Future<void> incrementSmallReward() async {
+//   Future<void> incrementSmallr() async {
 //     await _incrementBalance(0.002);
 //   }
 
 //   /// Increment user's available balance by 0.005
-//   Future<void> incrementMediumReward() async {
+//   Future<void> incrementMediumr() async {
 //     await _incrementBalance(0.005);
 //   }
 
@@ -24,7 +24,7 @@ import 'package:get/get.dart';
 //     await _incrementBalance(0.003);
 //   }
 
-//   Future<void> incrementChatReward() async {
+//   Future<void> incrementChatr() async {
 //     await _incrementBalance(0.00005);
 //   }
 
@@ -49,45 +49,45 @@ import 'package:get/get.dart';
 //       print(
 //           "Balance incremented by $amount. New balance: ${currentBal + amount}");
 //     } catch (e, stack) {
-//       print("RewardController Exception: $e");
+//       print("rController Exception: $e");
 //       print("StackTrace: $stack");
 //     }
 //   }
 // }
 
-class RewardController extends GetxController {
+class RController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  /// 🔹 Tiny reward (0.00005)
-  Future<void> incrementTinyReward({required String uid}) async {
+  /// 🔹 Tiny r (0.00005)
+  Future<void> incrementTinyr({required String uid}) async {
     await _incrementBalance(uid: uid, amount: 0.00010);
   }
 
-  Future<void> incrementMarketReward({required String uid}) async {
+  Future<void> incrementMarketr({required String uid}) async {
     await _incrementBalance(uid: uid, amount: 0.0008);
   }
 
-  Future<void> incrementCommentReward({required String uid}) async {
+  Future<void> incrementCommentr({required String uid}) async {
     await _incrementBalance(uid: uid, amount: 0.0002);
   }
 
-  /// 🔹 Small reward (0.002)
-  Future<void> incrementSmallReward({required String uid}) async {
+  /// 🔹 Small r (0.002)
+  Future<void> incrementSmallr({required String uid}) async {
     await _incrementBalance(uid: uid, amount: 0.002);
   }
 
-  /// 🔹 Medium reward (0.005)
-  Future<void> incrementMediumReward({required String uid}) async {
+  /// 🔹 Medium r (0.005)
+  Future<void> incrementMediumr({required String uid}) async {
     await _incrementBalance(uid: uid, amount: 0.005);
   }
 
-  /// 🔹 Referral reward (0.003)
+  /// 🔹 Referral r (0.003)
   Future<void> incrementRefer({required String uid}) async {
     await _incrementBalance(uid: uid, amount: 0.009);
   }
 
-  /// 🔹 Chat reward (0.00005)
-  Future<void> incrementChatReward({required String uid}) async {
+  /// 🔹 Chat r (0.00005)
+  Future<void> incrementChatr({required String uid}) async {
     await _incrementBalance(uid: uid, amount: 0.00005);
   }
 
@@ -101,9 +101,9 @@ class RewardController extends GetxController {
 
       await userRef.update({'available_bal': FieldValue.increment(amount)});
 
-      print("💰 Rewarded $uid with $amount");
+      print("💰 red $uid with $amount");
     } catch (e, stack) {
-      print("❌ RewardController Exception: $e");
+      print("❌ rController Exception: $e");
       print("StackTrace: $stack");
     }
   }

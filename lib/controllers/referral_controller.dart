@@ -10,7 +10,7 @@ import 'package:homeo/controllers/theme_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // class ReferController extends GetxController {
-//   final RewardController rewardController = Get.find<RewardController>();
+//   final rController rController = Get.find<rController>();
 //   final AuthController authController = Get.find<AuthController>();
 //   final ThemeController themeController = Get.find<ThemeController>();
 //   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -185,7 +185,7 @@ import 'package:url_launcher/url_launcher.dart';
 //         'platform': selectedPlatform.value,
 //         'link': link,
 //         'status': false,
-//         'rewardGiven': false,
+//         'rGiven': false,
 //         'submittedAt': FieldValue.serverTimestamp(),
 //         'reviewedAt': null,
 //       });
@@ -219,17 +219,17 @@ import 'package:url_launcher/url_launcher.dart';
 
 //       final data = doc.data()!;
 
-//       if (data['rewardGiven'] == true) {
+//       if (data['rGiven'] == true) {
 //         return;
 //       }
 
 //       await docRef.update({
 //         'status': true,
-//         'rewardGiven': true,
+//         'rGiven': true,
 //         'reviewedAt': FieldValue.serverTimestamp(),
 //       });
 
-//       await rewardController.incrementRefer(
+//       await rController.incrementRefer(
 //         uid: data['uid'],
 //       );
 //     } catch (_) {}
@@ -311,8 +311,8 @@ import 'package:url_launcher/url_launcher.dart';
 //         mode: LaunchMode.externalApplication,
 //       );
 
-//       // 🎁 Reward
-//       await rewardController.incrementRefer(uid: uid);
+//       // 🎁 r
+//       await rController.incrementRefer(uid: uid);
 
 //       // 💾 Save date
 //       await userRef.update({
@@ -337,9 +337,9 @@ import 'package:url_launcher/url_launcher.dart';
 ///   by AuthController (on signup, and backfilled on login).
 /// - This controller just displays that code as simple, copiable text —
 ///   no submissions, no admin approval.
-/// - The actual reward is handled entirely by AuthController: when a new
+/// - The actual r is handled entirely by AuthController: when a new
 ///   user who entered someone's referCode at signup gets their `verify`
-///   field set to true, that referrer is rewarded automatically (once).
+///   field set to true, that referrer is red automatically (once).
 class ReferController extends GetxController {
   final AuthController authController = Get.find<AuthController>();
   final ThemeController themeController = Get.find<ThemeController>();
@@ -384,7 +384,7 @@ class ReferController extends GetxController {
     return '''
 HOMEo is 100% Legit! 🎉
 
-Download HOMEo and sign up with my referral code: $code, Log in, verify your email & start earning rewards by:
+Download HOMEo and sign up with my referral code: $code, Log in, verify your email & start earning rs by:
 
 • Liking Available Services.
 ''';
@@ -417,8 +417,8 @@ Download HOMEo and sign up with my referral code: $code, Log in, verify your ema
     _showSnackbar('Copied', 'Referral message copied to clipboard.');
   }
 
-  /// 🔗 Open WhatsApp with the referral message prefilled. No reward is
-  /// tied to sharing itself — the reward only fires once someone who
+  /// 🔗 Open WhatsApp with the referral message prefilled. No r is
+  /// tied to sharing itself — the r only fires once someone who
   /// actually used this code verifies their email (see AuthController).
   Future<void> shareToWhatsApp() async {
     if (referCode.value.isEmpty) {

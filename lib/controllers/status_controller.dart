@@ -7,7 +7,7 @@
 // import 'package:record/record.dart';
 // import 'package:spiiiq/controllers/account_controller.dart';
 // import 'package:spiiiq/controllers/e_login_controller.dart';
-// import 'package:spiiiq/controllers/reward_controller.dart';
+// import 'package:spiiiq/controllers/r_controller.dart';
 // import 'package:spiiiq/controllers/theme_controller.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_storage/firebase_storage.dart';
@@ -20,7 +20,7 @@
 // class StatusController extends GetxController {
 //   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 //   final AuthController _auth = Get.find<AuthController>();
-//   final RewardController _rewardCtrl = Get.find<RewardController>();
+//   final rController _rCtrl = Get.find<rController>();
 
 //   /// ✅ CACHE
 //   final RxMap<String, String?> _avatarCache = <String, String?>{}.obs;
@@ -461,7 +461,7 @@
 
 //       lastStatusPostAt.value = now;
 
-//       await handleStatusPostReward(statusRef.id, user.uid);
+//       await handleStatusPostr(statusRef.id, user.uid);
 //     } catch (e) {
 //       if (kDebugMode) print('❌ Post status error: $e');
 //     } finally {
@@ -508,7 +508,7 @@
 //         await docRef.update({'likes': likes});
 
 //         if (liked) {
-//           await handleStatusLikeReward(statusId: doc.id, userUid: userUid);
+//           await handleStatusLiker(statusId: doc.id, userUid: userUid);
 
 //           final ownerEmail = currentData['email'] as String?;
 
@@ -522,7 +522,7 @@
 //             if (ownerQuery.docs.isNotEmpty) {
 //               final ownerUid = ownerQuery.docs.first.id;
 
-//               await handleStatusOwnerReward(
+//               await handleStatusOwnerr(
 //                 statusId: doc.id,
 //                 ownerUid: ownerUid,
 //                 interactingUserUid: userUid,
@@ -721,11 +721,11 @@
 //             'timestamp': FieldValue.serverTimestamp(),
 //           });
 
-//       await handleCommentReward(commentId: commentRef.id, userUid: user.uid);
+//       await handleCommentr(commentId: commentRef.id, userUid: user.uid);
 
 //       // 🔧 FIX: was reading from 'status' — the posts collection is
 //       // actually 'status1', so this lookup was always failing silently
-//       // and status-owner rewards for comments never fired.
+//       // and status-owner rs for comments never fired.
 //       final postDoc = await _firestore
 //           .collection('status1')
 //           .doc(statusId)
@@ -743,7 +743,7 @@
 //         if (ownerQuery.docs.isNotEmpty) {
 //           final ownerUid = ownerQuery.docs.first.id;
 
-//           await handleStatusOwnerReward(
+//           await handleStatusOwnerr(
 //             statusId: statusId,
 //             ownerUid: ownerUid,
 //             interactingUserUid: user.uid,
@@ -806,71 +806,71 @@
 //     return a.year == b.year && a.month == b.month && a.day == b.day;
 //   }
 
-//   Future<void> handleStatusPostReward(String statusId, String uid) async {
+//   Future<void> handleStatusPostr(String statusId, String uid) async {
 //     try {
 //       final user = _auth.currentUser;
 
 //       if (user == null) return;
 
-//       final rewardRef = _firestore
-//           .collection('statusRewards')
+//       final rRef = _firestore
+//           .collection('statusrs')
 //           .doc(user.uid)
 //           .collection('statusPosts')
 //           .doc(statusId);
 
-//       if (!(await rewardRef.get()).exists) {
-//         await _rewardCtrl.incrementTinyReward(uid: user.uid);
+//       if (!(await rRef.get()).exists) {
+//         await _rCtrl.incrementTinyr(uid: user.uid);
 
-//         await rewardRef.set({'rewarded': true});
+//         await rRef.set({'red': true});
 //       }
 //     } catch (e) {
-//       if (kDebugMode) print("❌ Error rewarding status post: $e");
+//       if (kDebugMode) print("❌ Error ring status post: $e");
 //     }
 //   }
 
-//   Future<void> handleStatusLikeReward({
+//   Future<void> handleStatusLiker({
 //     required String statusId,
 //     required String userUid,
 //   }) async {
 //     try {
-//       final rewardRef = _firestore
-//           .collection('statusRewards')
+//       final rRef = _firestore
+//           .collection('statusrs')
 //           .doc(userUid)
 //           .collection('statusLikes')
 //           .doc(statusId);
 
-//       if (!(await rewardRef.get()).exists) {
-//         await _rewardCtrl.incrementTinyReward(uid: userUid);
+//       if (!(await rRef.get()).exists) {
+//         await _rCtrl.incrementTinyr(uid: userUid);
 
-//         await rewardRef.set({'rewarded': true});
+//         await rRef.set({'red': true});
 //       }
 //     } catch (e) {
-//       if (kDebugMode) print("❌ Error rewarding status like: $e");
+//       if (kDebugMode) print("❌ Error ring status like: $e");
 //     }
 //   }
 
-//   Future<void> handleCommentReward({
+//   Future<void> handleCommentr({
 //     required String commentId,
 //     required String userUid,
 //   }) async {
 //     try {
-//       final rewardRef = _firestore
-//           .collection('statusRewards')
+//       final rRef = _firestore
+//           .collection('statusrs')
 //           .doc(userUid)
 //           .collection('comments')
 //           .doc(commentId);
 
-//       if (!(await rewardRef.get()).exists) {
-//         await _rewardCtrl.incrementTinyReward(uid: userUid);
+//       if (!(await rRef.get()).exists) {
+//         await _rCtrl.incrementTinyr(uid: userUid);
 
-//         await rewardRef.set({'rewarded': true});
+//         await rRef.set({'red': true});
 //       }
 //     } catch (e) {
-//       if (kDebugMode) print("❌ Error rewarding comment: $e");
+//       if (kDebugMode) print("❌ Error ring comment: $e");
 //     }
 //   }
 
-//   Future<void> handleStatusOwnerReward({
+//   Future<void> handleStatusOwnerr({
 //     required String statusId,
 //     required String ownerUid,
 //     required String interactingUserUid,
@@ -880,23 +880,23 @@
 //         return;
 //       }
 
-//       final rewardRef = _firestore
-//           .collection('statusRewards')
+//       final rRef = _firestore
+//           .collection('statusrs')
 //           .doc(ownerUid)
-//           .collection('statusOwnerRewards')
+//           .collection('statusOwnerrs')
 //           .doc('$statusId-$interactingUserUid');
 
-//       if (!(await rewardRef.get()).exists) {
-//         await _rewardCtrl.incrementTinyReward(uid: ownerUid);
+//       if (!(await rRef.get()).exists) {
+//         await _rCtrl.incrementTinyr(uid: ownerUid);
 
-//         await rewardRef.set({
-//           'rewarded': true,
+//         await rRef.set({
+//           'red': true,
 //           'byUser': interactingUserUid,
 //           'timestamp': FieldValue.serverTimestamp(),
 //         });
 //       }
 //     } catch (e) {
-//       if (kDebugMode) print("❌ Error rewarding status owner: $e");
+//       if (kDebugMode) print("❌ Error ring status owner: $e");
 //     }
 //   }
 
@@ -987,7 +987,7 @@ import 'package:flutter/foundation.dart';
 import 'package:homeo/controllers/account_controller.dart';
 import 'package:homeo/controllers/e_login_controller.dart';
 import 'package:homeo/controllers/moderation_controller.dart';
-import 'package:homeo/controllers/reward_controller.dart';
+import 'package:homeo/controllers/r_controller.dart';
 import 'package:homeo/controllers/theme_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -999,7 +999,7 @@ import 'package:image_picker/image_picker.dart';
 class StatusController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final AuthController _auth = Get.find<AuthController>();
-  final RewardController _rewardCtrl = Get.find<RewardController>();
+  final RController _rCtrl = Get.find<RController>();
   ModerationController get _moderation => Get.find<ModerationController>();
 
   /// ✅ CACHE
@@ -1281,7 +1281,7 @@ class StatusController extends GetxController {
 
       lastStatusPostAt.value = now;
 
-      await handleStatusPostReward(statusRef.id, user.uid);
+      await handleStatusPostr(statusRef.id, user.uid);
     } catch (e) {
       if (kDebugMode) print('❌ Post status error: $e');
     } finally {
@@ -1328,7 +1328,7 @@ class StatusController extends GetxController {
         await docRef.update({'likes': likes});
 
         if (liked) {
-          await handleStatusLikeReward(statusId: doc.id, userUid: userUid);
+          await handleStatusLiker(statusId: doc.id, userUid: userUid);
 
           final ownerEmail = currentData['email'] as String?;
 
@@ -1342,7 +1342,7 @@ class StatusController extends GetxController {
             if (ownerQuery.docs.isNotEmpty) {
               final ownerUid = ownerQuery.docs.first.id;
 
-              await handleStatusOwnerReward(
+              await handleStatusOwnerr(
                 statusId: doc.id,
                 ownerUid: ownerUid,
                 interactingUserUid: userUid,
@@ -1541,11 +1541,11 @@ class StatusController extends GetxController {
   //           'timestamp': FieldValue.serverTimestamp(),
   //         });
 
-  //     await handleCommentReward(commentId: commentRef.id, userUid: user.uid);
+  //     await handleCommentr(commentId: commentRef.id, userUid: user.uid);
 
   //     // 🔧 FIX: was reading from 'status' — the posts collection is
   //     // actually 'status1', so this lookup was always failing silently
-  //     // and status-owner rewards for comments never fired.
+  //     // and status-owner rs for comments never fired.
   //     final postDoc = await _firestore
   //         .collection('status1')
   //         .doc(statusId)
@@ -1563,7 +1563,7 @@ class StatusController extends GetxController {
   //       if (ownerQuery.docs.isNotEmpty) {
   //         final ownerUid = ownerQuery.docs.first.id;
 
-  //         await handleStatusOwnerReward(
+  //         await handleStatusOwnerr(
   //           statusId: statusId,
   //           ownerUid: ownerUid,
   //           interactingUserUid: user.uid,
@@ -1680,10 +1680,10 @@ class StatusController extends GetxController {
         'updatedAt': FieldValue.serverTimestamp(),
       }, SetOptions(merge: true));
 
-      // 🎁 Reward the user who commented
-      await handleCommentReward(commentId: commentRef.id, userUid: user.uid);
+      // 🎁 r the user who commented
+      await handleCommentr(commentId: commentRef.id, userUid: user.uid);
 
-      // 🎁 Reward the owner of the post (skip if commenter is the owner)
+      // 🎁 r the owner of the post (skip if commenter is the owner)
       final postDoc = await _firestore
           .collection('status1')
           .doc(statusId)
@@ -1697,7 +1697,7 @@ class StatusController extends GetxController {
             .get();
         if (ownerQuery.docs.isNotEmpty) {
           final ownerUid = ownerQuery.docs.first.id;
-          await handleStatusOwnerReward(
+          await handleStatusOwnerr(
             statusId: statusId,
             ownerUid: ownerUid,
             interactingUserUid: user.uid, // <--- pass the commenter
@@ -1763,71 +1763,71 @@ class StatusController extends GetxController {
     return a.year == b.year && a.month == b.month && a.day == b.day;
   }
 
-  Future<void> handleStatusPostReward(String statusId, String uid) async {
+  Future<void> handleStatusPostr(String statusId, String uid) async {
     try {
       final user = _auth.currentUser;
 
       if (user == null) return;
 
-      final rewardRef = _firestore
-          .collection('statusRewards')
+      final rRef = _firestore
+          .collection('statusrs')
           .doc(user.uid)
           .collection('statusPosts')
           .doc(statusId);
 
-      if (!(await rewardRef.get()).exists) {
-        await _rewardCtrl.incrementTinyReward(uid: user.uid);
+      if (!(await rRef.get()).exists) {
+        await _rCtrl.incrementTinyr(uid: user.uid);
 
-        await rewardRef.set({'rewarded': true});
+        await rRef.set({'red': true});
       }
     } catch (e) {
-      if (kDebugMode) print("❌ Error rewarding status post: $e");
+      if (kDebugMode) print("❌ Error ring status post: $e");
     }
   }
 
-  Future<void> handleStatusLikeReward({
+  Future<void> handleStatusLiker({
     required String statusId,
     required String userUid,
   }) async {
     try {
-      final rewardRef = _firestore
-          .collection('statusRewards')
+      final rRef = _firestore
+          .collection('statusrs')
           .doc(userUid)
           .collection('statusLikes')
           .doc(statusId);
 
-      if (!(await rewardRef.get()).exists) {
-        await _rewardCtrl.incrementTinyReward(uid: userUid);
+      if (!(await rRef.get()).exists) {
+        await _rCtrl.incrementTinyr(uid: userUid);
 
-        await rewardRef.set({'rewarded': true});
+        await rRef.set({'red': true});
       }
     } catch (e) {
-      if (kDebugMode) print("❌ Error rewarding status like: $e");
+      if (kDebugMode) print("❌ Error ring status like: $e");
     }
   }
 
-  Future<void> handleCommentReward({
+  Future<void> handleCommentr({
     required String commentId,
     required String userUid,
   }) async {
     try {
-      final rewardRef = _firestore
-          .collection('statusRewards')
+      final rRef = _firestore
+          .collection('statusrs')
           .doc(userUid)
           .collection('comments1')
           .doc(commentId);
 
-      if (!(await rewardRef.get()).exists) {
-        await _rewardCtrl.incrementTinyReward(uid: userUid);
+      if (!(await rRef.get()).exists) {
+        await _rCtrl.incrementTinyr(uid: userUid);
 
-        await rewardRef.set({'rewarded': true});
+        await rRef.set({'red': true});
       }
     } catch (e) {
-      if (kDebugMode) print("❌ Error rewarding comment: $e");
+      if (kDebugMode) print("❌ Error ring comment: $e");
     }
   }
 
-  Future<void> handleStatusOwnerReward({
+  Future<void> handleStatusOwnerr({
     required String statusId,
     required String ownerUid,
     required String interactingUserUid,
@@ -1837,23 +1837,23 @@ class StatusController extends GetxController {
         return;
       }
 
-      final rewardRef = _firestore
-          .collection('statusRewards')
+      final rRef = _firestore
+          .collection('statusrs')
           .doc(ownerUid)
-          .collection('statusOwnerRewards')
+          .collection('statusOwnerrs')
           .doc('$statusId-$interactingUserUid');
 
-      if (!(await rewardRef.get()).exists) {
-        await _rewardCtrl.incrementTinyReward(uid: ownerUid);
+      if (!(await rRef.get()).exists) {
+        await _rCtrl.incrementTinyr(uid: ownerUid);
 
-        await rewardRef.set({
-          'rewarded': true,
+        await rRef.set({
+          'red': true,
           'byUser': interactingUserUid,
           'timestamp': FieldValue.serverTimestamp(),
         });
       }
     } catch (e) {
-      if (kDebugMode) print("❌ Error rewarding status owner: $e");
+      if (kDebugMode) print("❌ Error ring status owner: $e");
     }
   }
 

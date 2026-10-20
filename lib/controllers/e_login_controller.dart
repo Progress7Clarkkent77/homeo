@@ -1,12 +1,11 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:homeo/pages/policy.dart';
 import 'package:homeo/pages/term_of_use.dart';
 //import 'package:homeo/controllers/chat_controller.dart';
 //import 'package:homeo/controllers/chat_list_controller.dart';
 //import 'package:homeo/controllers/moderation_controller.dart';
-import 'package:homeo/controllers/reward_controller.dart';
+import 'package:homeo/controllers/r_controller.dart';
 import 'package:homeo/controllers/theme_controller.dart';
 //import 'package:homeo/controllers/user_presence_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,13 +13,12 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//import 'package:homeo/BlockChain/blockchain_controller.dart';
 
 import 'package:homeo/widgets/loading_dialogue.dart';
 
 import 'dart:io' show Platform;
 
-import 'package:homeo/controllers/reward_controller.dart';
+import 'package:homeo/controllers/r_controller.dart';
 import 'package:homeo/controllers/theme_controller.dart';
 //import 'package:homeo/controllers/user_presence_controller.dart';
 import 'package:homeo/pages/term_of_use.dart';
@@ -364,10 +362,10 @@ class AuthController extends GetxController {
       // ✅ Step 6: Update reactive state
       isVerified.value = true;
 
-      // 🎁 Step 7: Reward whoever referred this user — only fires the
+      // 🎁 Step 7: r whoever referred this user — only fires the
       // first time this user's `verify` field becomes true (this method
       // already returned early above if it was already true).
-      await _rewardReferrerIfNeeded(user.uid, userDoc);
+      await _rReferrerIfNeeded(user.uid, userDoc);
     } catch (e) {
       Get.snackbar("Error", "Failed to send verification email");
     }
@@ -489,7 +487,7 @@ class AuthController extends GetxController {
     final docRef = _firestore.collection('e-users').doc(user.uid);
 
     // 🔎 Read first — this tells us whether this call is the actual
-    // false→true transition (so we don't reward twice), and gives us the
+    // false→true transition (so we don't r twice), and gives us the
     // `referredBy` field before we write below.
     final userDoc = await docRef.get();
     final wasAlreadyVerified =
@@ -499,12 +497,12 @@ class AuthController extends GetxController {
 
     isVerified.value = true;
 
-    // 🎁 Reward whoever referred this user — only on the transition into
+    // 🎁 r whoever referred this user — only on the transition into
     // verified. This is the real verification path (backed by Firebase
     // Auth's emailVerified), unlike the timer-based one in
     // sendVerificationEmail() above.
     if (!wasAlreadyVerified) {
-      await _rewardReferrerIfNeeded(user.uid, userDoc);
+      await _rReferrerIfNeeded(user.uid, userDoc);
     }
 
     return true;
@@ -609,7 +607,7 @@ class AuthController extends GetxController {
   // (generated on signup, and backfilled on login for accounts that
   // predate this feature). A new user can optionally enter someone
   // else's code at signup, which links `referredBy` on their own doc.
-  // The referrer is only rewarded once — the first time the new user's
+  // The referrer is only red once — the first time the new user's
   // `verify` field flips to true in sendVerificationEmail() above.
   // =====================================================================
 
@@ -655,10 +653,10 @@ class AuthController extends GetxController {
     }
   }
 
-  /// 🎁 Rewards whoever referred this user (via `referredBy` on their
-  /// own doc), but only once — guarded by `referralRewardGiven` in case
+  /// 🎁 rs whoever referred this user (via `referredBy` on their
+  /// own doc), but only once — guarded by `referralrGiven` in case
   /// this ever runs more than once for the same user.
-  Future<void> _rewardReferrerIfNeeded(
+  Future<void> _rReferrerIfNeeded(
     String newUserUid,
     DocumentSnapshot userDoc,
   ) async {
@@ -667,18 +665,18 @@ class AuthController extends GetxController {
       final referrerUid = data?['referredBy'] as String?;
 
       if (referrerUid == null || referrerUid.isEmpty) return;
-      if (data?['referralRewardGiven'] == true) return;
+      if (data?['referralrGiven'] == true) return;
 
-      final rewardCtrl = Get.find<RewardController>();
-      await rewardCtrl.incrementRefer(uid: referrerUid);
+      final rCtrl = Get.find<RController>();
+      await rCtrl.incrementRefer(uid: referrerUid);
 
       await _firestore.collection('e-users').doc(newUserUid).set({
-        'referralRewardGiven': true,
+        'referralrGiven': true,
       }, SetOptions(merge: true));
 
-      print("💰 Rewarded referrer $referrerUid for verified signup");
+      print("💰 red referrer $referrerUid for verified signup");
     } catch (e) {
-      print("❌ Error rewarding referrer: $e");
+      print("❌ Error ring referrer: $e");
     }
   }
 }

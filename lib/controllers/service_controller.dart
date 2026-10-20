@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:homeo/controllers/e_login_controller.dart';
-import 'package:homeo/controllers/reward_controller.dart';
+import 'package:homeo/controllers/r_controller.dart';
 
 /// 🔹 Controlled icon set for HOMEo services.
 ///
@@ -187,19 +187,19 @@ class ServiceThumb extends StatelessWidget {
 ///
 /// `toggleServiceLike` follows the same shape as
 /// `StatusController.toggleLike` — optimistic local update first, then a
-/// Firestore write, then a one-time idempotent reward (mirroring
-/// `handleStatusLikeReward`) so a user can't farm rewards by repeatedly
+/// Firestore write, then a one-time idempotent r (mirroring
+/// `handleStatusLiker`) so a user can't farm rs by repeatedly
 /// liking and unliking the same service.
 ///
 /// Collection convention: this codebase stores user records under
-/// `e-users` everywhere else (see ThemeController, RewardController,
+/// `e-users` everywhere else (see ThemeController, rController,
 /// StatusController, AuthController), so favorites live at
 /// `e-users/{uid}/favorites/{serviceId}` — not a separate `users`
 /// collection — to stay consistent with the rest of the app.
 class ServiceController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final AuthController _auth = Get.find<AuthController>();
-  final RewardController _rewardCtrl = Get.find<RewardController>();
+  final RController _rCtrl = Get.find<RController>();
 
   /// ✅ Customer-facing state — active services only, in display order.
   final RxList<HomeoServiceModel> services = <HomeoServiceModel>[].obs;
@@ -369,7 +369,7 @@ class ServiceController extends GetxController {
       });
 
       if (willLike) {
-        await handleServiceLikeReward(serviceId: serviceId, userUid: uid);
+        await handleServiceLiker(serviceId: serviceId, userUid: uid);
       }
     } catch (e) {
       if (kDebugMode) print('❌ Toggle service like error: $e');
@@ -389,32 +389,32 @@ class ServiceController extends GetxController {
     }
   }
 
-  /// 🔹 One-time reward for liking a service, mirroring
-  /// `StatusController.handleStatusLikeReward`: a ledger doc under
-  /// `serviceRewards/{uid}/serviceLikes/{serviceId}` guards against
-  /// rewarding the same user for the same service more than once, even
+  /// 🔹 One-time r for liking a service, mirroring
+  /// `StatusController.handleStatusLiker`: a ledger doc under
+  /// `servicers/{uid}/serviceLikes/{serviceId}` guards against
+  /// ring the same user for the same service more than once, even
   /// if they unlike and re-like it later.
-  Future<void> handleServiceLikeReward({
+  Future<void> handleServiceLiker({
     required String serviceId,
     required String userUid,
   }) async {
     try {
-      final rewardRef = _firestore
-          .collection('serviceRewards')
+      final rRef = _firestore
+          .collection('servicers')
           .doc(userUid)
           .collection('serviceLikes')
           .doc(serviceId);
 
-      if (!(await rewardRef.get()).exists) {
-        await _rewardCtrl.incrementTinyReward(uid: userUid);
+      if (!(await rRef.get()).exists) {
+        await _rCtrl.incrementTinyr(uid: userUid);
 
-        await rewardRef.set({
-          'rewarded': true,
+        await rRef.set({
+          'red': true,
           'timestamp': FieldValue.serverTimestamp(),
         });
       }
     } catch (e) {
-      if (kDebugMode) print('❌ Error rewarding service like: $e');
+      if (kDebugMode) print('❌ Error ring service like: $e');
     }
   }
 
