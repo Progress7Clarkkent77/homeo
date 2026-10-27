@@ -63,33 +63,6 @@ class VerifiedController extends GetxController {
     });
   }
 
-  /* -------------------------------------------------------------------------- */
-  /*                           ⏳ CHECK EXPIRY                                   */
-  /* -------------------------------------------------------------------------- */
-
-  // Future<void> _checkExpiry() async {
-  //   if (verifiedExpiresAt.value == null || uid == null) return;
-
-  //   final now = DateTime.now();
-  //   final expiry = verifiedExpiresAt.value!;
-
-  //   final remaining = expiry.difference(now).inDays;
-  //   daysLeft.value = remaining < 0 ? 0 : remaining;
-
-  //   if (now.isAfter(expiry) && isVerified.value) {
-  //     await _firestore.collection('e-users').doc(uid).update({
-  //       'verified': false,
-  //       'verifiedAt': null,
-  //       'verifiedExpiresAt': null,
-  //     });
-
-  //     isVerified.value = false;
-  //     verifiedAt.value = null;
-  //     verifiedExpiresAt.value = null;
-  //     daysLeft.value = 0;
-  //   }
-  // }
-
   Future<void> _checkExpiry() async {
     if (verifiedExpiresAt.value == null || uid == null) return;
 
@@ -113,38 +86,6 @@ class VerifiedController extends GetxController {
       daysLeft.value = 0;
     }
   }
-
-  /* -------------------------------------------------------------------------- */
-  /*                       💳 PAYSTACK VERIFICATION                              */
-  /* -------------------------------------------------------------------------- */
-
-  // Future<void> verifyWithPaystack() async {
-  //   final user = _auth.currentUser;
-  //   if (user == null) {
-  //     _snack('Error', 'Please log in');
-  //     return;
-  //   }
-
-  //   const double amount = 5000;
-  //   final email = user.email;
-
-  //   if (email == null || email.isEmpty) {
-  //     _snack('Error', 'Email not found');
-  //     return;
-  //   }
-
-  //   PaystackPopup.openPaystackPopup(
-  //     email: email,
-  //     amount: (amount * 100).toString(),
-  //     ref: "verify-${DateTime.now().millisecondsSinceEpoch}",
-  //     onClosed: () {
-  //       _snack('Payment cancelled', 'Verification was not completed');
-  //     },
-  //     onSuccess: () async {
-  //       await _activateOrExtendVerification();
-  //     },
-  //   );
-  // }
 
   /* -------------------------------------------------------------------------- */
   /*                     🔐 ACTIVATE / EXTEND VERIFICATION                       */

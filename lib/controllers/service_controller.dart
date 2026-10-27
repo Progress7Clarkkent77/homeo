@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:homeo/controllers/e_login_controller.dart';
-import 'package:homeo/controllers/r_controller.dart';
 
 /// 🔹 Controlled icon set for HOMEo services.
 ///
@@ -199,7 +198,6 @@ class ServiceThumb extends StatelessWidget {
 class ServiceController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final AuthController _auth = Get.find<AuthController>();
-  final RController _rCtrl = Get.find<RController>();
 
   /// ✅ Customer-facing state — active services only, in display order.
   final RxList<HomeoServiceModel> services = <HomeoServiceModel>[].obs;
@@ -406,8 +404,6 @@ class ServiceController extends GetxController {
           .doc(serviceId);
 
       if (!(await rRef.get()).exists) {
-        await _rCtrl.incrementTinyr(uid: userUid);
-
         await rRef.set({
           'red': true,
           'timestamp': FieldValue.serverTimestamp(),

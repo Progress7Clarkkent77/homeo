@@ -348,7 +348,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
   }
 
   // 🔹 Profile needs an account — signed-out users get the same
-  // "Sign in to continue" dialog the like button uses, no navigation.
+  // "Sign in to continue" dialog, no navigation.
   void _openProfile() {
     requireAuth(
       context,
@@ -846,15 +846,7 @@ class _ServiceCard extends StatelessWidget {
                             color: kHomeoPrimary,
                           ),
                           const Spacer(),
-                          Text(
-                            '${service.likesCount} ${service.likesCount == 1 ? "like" : "likes"}',
-                            style: TextStyle(
-                              fontSize: 11.5,
-                              color: isDark ? Colors.white54 : Colors.black45,
-                            ),
-                          ),
-                          const SizedBox(width: 4),
-                          _LikeButton(service: service),
+                          HomeoApprovedBadge(isDark: isDark),
                         ],
                       ),
                     ],
@@ -869,68 +861,94 @@ class _ServiceCard extends StatelessWidget {
   }
 }
 
-/// 🔹 Animated like/favorite button. Signed-out taps route through the
-/// auth-required dialog and never touch Firestore.
-class _LikeButton extends StatefulWidget {
-  final HomeoServiceModel service;
-  const _LikeButton({required this.service});
+/// 🔹 "Approved by HOMEo" trust mark. Replaces the old like button on the
+/// service card and the details page. Purely presentational: no
+/// controller, no auth, no Firestore.
+///
+/// [large] is the hero variant used on the details page (solid brand
+/// gradient, white text); the default compact variant is the soft tinted
+/// pill used on catalogue cards.
+class HomeoApprovedBadge extends StatelessWidget {
+  final bool isDark;
+  final bool large;
 
-  @override
-  State<_LikeButton> createState() => _LikeButtonState();
-}
-
-class _LikeButtonState extends State<_LikeButton>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 220),
-    lowerBound: 0.85,
-    upperBound: 1.0,
-    value: 1.0,
-  );
-
-  final serviceCtrl = Get.find<ServiceController>();
-
-  void _handleTap() {
-    requireAuth(
-      context,
-      title: 'Sign in to continue',
-      message:
-          'Please sign in to like and save HOMEo services to your profile.',
-      onAuthenticated: () {
-        _controller
-          ..value = 0.85
-          ..animateTo(1.0, curve: Curves.elasticOut);
-        serviceCtrl.toggleServiceLike(widget.service.id);
-      },
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  const HomeoApprovedBadge({
+    super.key,
+    required this.isDark,
+    this.large = false,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      final liked = serviceCtrl.isLiked(widget.service.id);
-      return GestureDetector(
-        onTap: _handleTap,
-        child: ScaleTransition(
-          scale: _controller,
-          child: Padding(
-            padding: const EdgeInsets.all(4),
-            child: Icon(
-              liked ? Icons.favorite_rounded : Icons.favorite_border_rounded,
-              color: liked ? const Color(0xFFE0507A) : Colors.grey,
-              size: 22,
-            ),
+    if (large) {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [kHomeoPrimary, kHomeoPrimaryDark],
           ),
+          boxShadow: [
+            BoxShadow(
+              color: kHomeoPrimary.withOpacity(isDark ? 0.35 : 0.30),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.verified_rounded, size: 19, color: Colors.white),
+            SizedBox(width: 8),
+            Text(
+              'Approved by HOMEo',
+              style: TextStyle(
+                fontSize: 9.5,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 0.2,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
       );
-    });
+    }
+
+    final accent = isDark ? const Color(0xFF3DDBB6) : kHomeoPrimary;
+    return Container(
+      padding: const EdgeInsets.fromLTRB(8, 5, 11, 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            kHomeoPrimary.withOpacity(isDark ? 0.24 : 0.14),
+            kHomeoPrimary.withOpacity(isDark ? 0.10 : 0.05),
+          ],
+        ),
+        border: Border.all(color: kHomeoPrimary.withOpacity(0.35)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.verified_rounded, size: 15, color: accent),
+          const SizedBox(width: 5),
+          Text(
+            'HOMEo Approved',
+            style: TextStyle(
+              fontSize: 7.5,
+              fontWeight: FontWeight.w800,
+              letterSpacing: 0.1,
+              color: accent,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 

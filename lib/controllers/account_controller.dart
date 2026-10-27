@@ -28,13 +28,6 @@ class AccountController extends GetxController {
 
   Timer? _balanceTimer;
 
-  // void startRealtimeBalance() {
-  //   _balanceTimer?.cancel();
-  //   _balanceTimer = Timer.periodic(const Duration(seconds: 5), (_) async {
-  //     await fetchBalances();
-  //   });
-  // }
-
   @override
   void onInit() {
     super.onInit();

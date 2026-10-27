@@ -94,25 +94,8 @@ class _EarnLoginState extends State<EarnLogin> {
 
                 const SizedBox(height: 6),
 
-                // Text(
-                //   'Sign in to continue on spiiiq',
-                //   style: TextStyle(
-                //     fontSize: 13,
-                //     color: Colors.black54,
-                //   ),
-                // ),
                 Column(
                   children: const [
-                    Text(
-                      'Continue with your Textido account',
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(height: 3),
                     Text(
                       'Sign in to continue to HOMEo.',
                       style: TextStyle(fontSize: 13, color: Colors.black54),
@@ -525,35 +508,7 @@ class _EarnSignUpState extends State<EarnSignUp> {
                         ),
                       ),
 
-                      const SizedBox(height: 16),
-
-                      /// REFERRAL CODE (optional)
-                      TextField(
-                        focusNode: referCodeFocus,
-                        controller: referCodeCtrl,
-                        keyboardType: TextInputType.number,
-                        maxLength: 6,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: const BorderSide(
-                              color: Colors.black,
-                              width: 2,
-                            ),
-                          ),
-                          prefixIcon: const Icon(Icons.card_giftcard),
-                          labelText: 'Referral code (optional)',
-                          labelStyle: TextStyle(
-                            color: Colors.black.withOpacity(0.65),
-                          ),
-                          hintText: "Friend's 6-digit code",
-                          counterText: '',
-                        ),
-                      ),
-
+                      // const SizedBox(height: 16),
                       const SizedBox(height: 20),
 
                       /// SIGN UP BUTTON

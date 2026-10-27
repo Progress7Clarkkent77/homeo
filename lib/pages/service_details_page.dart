@@ -5,14 +5,13 @@ import 'package:get/get.dart';
 import 'package:homeo/controllers/contact_config_controller.dart';
 import 'package:homeo/controllers/service_controller.dart';
 import 'package:homeo/controllers/theme_controller.dart';
-import 'package:homeo/pages/home.dart' show kHomeoPrimary;
-import 'package:homeo/widgets/auth_required_dialog.dart';
+import 'package:homeo/pages/home.dart' show kHomeoPrimary, HomeoApprovedBadge;
 
 /// 🔹 Premium Service Details page.
 ///
 /// Streams the service doc live by [serviceId] (rather than taking a
-/// snapshot model) so likesCount and edits from the admin page reflect
-/// immediately without the user needing to go back and re-open it.
+/// snapshot model) so edits from the admin page reflect immediately
+/// without the user needing to go back and re-open it.
 class ServiceDetailsPage extends StatelessWidget {
   final String serviceId;
 
@@ -21,7 +20,6 @@ class ServiceDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeCtrl = Get.find<ThemeController>();
-    final serviceCtrl = Get.find<ServiceController>();
     final contactCtrl = Get.put(ContactConfigController(), permanent: true);
 
     return Obx(() {
@@ -90,27 +88,24 @@ class ServiceDetailsPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 22),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        service.name,
-                        style: TextStyle(
-                          fontSize: 21,
-                          fontWeight: FontWeight.w800,
-                          color: isDark
-                              ? Colors.white
-                              : const Color(0xFF14171A),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      _DetailsLikeButton(service: service),
-                    ],
-                  ),
-                  const SizedBox(height: 6),
                   Center(
                     child: Text(
-                      '${service.likesCount} ${service.likesCount == 1 ? "like" : "likes"}',
+                      service.name,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 21,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -0.3,
+                        color: isDark ? Colors.white : const Color(0xFF14171A),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 10),
+                  Center(
+                    child: Text(
+                      'Reviewed and approved by the HOMEo team',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 12,
                         color: isDark ? Colors.white54 : Colors.black45,
@@ -165,63 +160,6 @@ class ServiceDetailsPage extends StatelessWidget {
               ),
             );
           },
-        ),
-      );
-    });
-  }
-}
-
-class _DetailsLikeButton extends StatefulWidget {
-  final HomeoServiceModel service;
-  const _DetailsLikeButton({required this.service});
-
-  @override
-  State<_DetailsLikeButton> createState() => _DetailsLikeButtonState();
-}
-
-class _DetailsLikeButtonState extends State<_DetailsLikeButton>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 220),
-    lowerBound: 0.85,
-    upperBound: 1.0,
-    value: 1.0,
-  );
-
-  final serviceCtrl = Get.find<ServiceController>();
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Obx(() {
-      final liked = serviceCtrl.isLiked(widget.service.id);
-      return GestureDetector(
-        onTap: () {
-          requireAuth(
-            context,
-            title: 'Sign in to continue',
-            message: 'Please sign in to like and save HOMEo services to your profile.',
-            onAuthenticated: () {
-              _controller
-                ..value = 0.85
-                ..animateTo(1.0, curve: Curves.elasticOut);
-              serviceCtrl.toggleServiceLike(widget.service.id);
-            },
-          );
-        },
-        child: ScaleTransition(
-          scale: _controller,
-          child: Icon(
-            liked ? Icons.favorite_rounded : Icons.favorite_border_rounded,
-            color: liked ? const Color(0xFFE0507A) : Colors.grey,
-            size: 24,
-          ),
         ),
       );
     });

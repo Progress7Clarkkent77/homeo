@@ -5,7 +5,7 @@ import 'package:homeo/pages/term_of_use.dart';
 //import 'package:homeo/controllers/chat_controller.dart';
 //import 'package:homeo/controllers/chat_list_controller.dart';
 //import 'package:homeo/controllers/moderation_controller.dart';
-import 'package:homeo/controllers/r_controller.dart';
+
 import 'package:homeo/controllers/theme_controller.dart';
 //import 'package:homeo/controllers/user_presence_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,7 +18,6 @@ import 'package:homeo/widgets/loading_dialogue.dart';
 
 import 'dart:io' show Platform;
 
-import 'package:homeo/controllers/r_controller.dart';
 import 'package:homeo/controllers/theme_controller.dart';
 //import 'package:homeo/controllers/user_presence_controller.dart';
 import 'package:homeo/pages/term_of_use.dart';
@@ -198,7 +197,12 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> logout() async {
+  /// Signs the user out. [redirectRoute] is where to go afterwards
+  /// (defaults to '/login' so existing callers behave exactly as before).
+  Future<void> logout({
+    String redirectRoute = '/login',
+    Duration delay = const Duration(seconds: 6),
+  }) async {
     try {
       // Show loading dialog
       Get.dialog(
@@ -207,7 +211,7 @@ class AuthController extends GetxController {
       );
 
       // Wait for a moment so the dialog is visible
-      await Future.delayed(Duration(seconds: 6));
+      await Future.delayed(delay);
 
       //await Get.find<UserPresenceController>().setOffline();
 
@@ -218,8 +222,8 @@ class AuthController extends GetxController {
       // Close dialog after delay and logout
       Get.back();
 
-      // Navigate to login screen & clear history
-      Get.offAllNamed('/login');
+      // Navigate to the requested screen & clear history
+      Get.offAllNamed(redirectRoute);
     } catch (e) {
       Get.back(); // Close dialog if there's an error
       Get.snackbar("Logout Error", "Failed to log out. Please try again.");
@@ -361,11 +365,6 @@ class AuthController extends GetxController {
 
       // ✅ Step 6: Update reactive state
       isVerified.value = true;
-
-      // 🎁 Step 7: r whoever referred this user — only fires the
-      // first time this user's `verify` field becomes true (this method
-      // already returned early above if it was already true).
-      await _rReferrerIfNeeded(user.uid, userDoc);
     } catch (e) {
       Get.snackbar("Error", "Failed to send verification email");
     }
@@ -486,24 +485,9 @@ class AuthController extends GetxController {
 
     final docRef = _firestore.collection('e-users').doc(user.uid);
 
-    // 🔎 Read first — this tells us whether this call is the actual
-    // false→true transition (so we don't r twice), and gives us the
-    // `referredBy` field before we write below.
-    final userDoc = await docRef.get();
-    final wasAlreadyVerified =
-        (userDoc.data() as Map<String, dynamic>?)?['withdraw_verify'] == true;
-
     await docRef.set({'withdraw_verify': true}, SetOptions(merge: true));
 
     isVerified.value = true;
-
-    // 🎁 r whoever referred this user — only on the transition into
-    // verified. This is the real verification path (backed by Firebase
-    // Auth's emailVerified), unlike the timer-based one in
-    // sendVerificationEmail() above.
-    if (!wasAlreadyVerified) {
-      await _rReferrerIfNeeded(user.uid, userDoc);
-    }
 
     return true;
   }
@@ -650,33 +634,6 @@ class AuthController extends GetxController {
       if (existing.docs.isEmpty) {
         return code;
       }
-    }
-  }
-
-  /// 🎁 rs whoever referred this user (via `referredBy` on their
-  /// own doc), but only once — guarded by `referralrGiven` in case
-  /// this ever runs more than once for the same user.
-  Future<void> _rReferrerIfNeeded(
-    String newUserUid,
-    DocumentSnapshot userDoc,
-  ) async {
-    try {
-      final data = userDoc.data() as Map<String, dynamic>?;
-      final referrerUid = data?['referredBy'] as String?;
-
-      if (referrerUid == null || referrerUid.isEmpty) return;
-      if (data?['referralrGiven'] == true) return;
-
-      final rCtrl = Get.find<RController>();
-      await rCtrl.incrementRefer(uid: referrerUid);
-
-      await _firestore.collection('e-users').doc(newUserUid).set({
-        'referralrGiven': true,
-      }, SetOptions(merge: true));
-
-      print("💰 red referrer $referrerUid for verified signup");
-    } catch (e) {
-      print("❌ Error ring referrer: $e");
     }
   }
 }
